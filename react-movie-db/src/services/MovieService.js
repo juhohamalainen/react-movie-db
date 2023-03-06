@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const OMDB_API_KEY = "http://www.omdbapi.com/?i=tt3896198&apikey=5d435479";
+const OMDB_API_KEY = "5d435479";
 
 const MovieService = {
   searchMovies: (title) => {

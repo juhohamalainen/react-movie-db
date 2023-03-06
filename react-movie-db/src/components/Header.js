@@ -1,8 +1,10 @@
 import React from "react";
 
-function Header() {
+function Header(props) {
+  const theme = props.theme === "dark" ? "bg-dark text-light" : "";
+  
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className={`navbar navbar-expand-lg navbar-light ${theme}`}>
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           Movie Search
@@ -18,7 +20,7 @@ function Header() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className={`collapse navbar-collapse ${theme}`} id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="/">

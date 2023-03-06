@@ -6,10 +6,17 @@ import MovieList from "./components/MovieList";
 import MovieDetails from "./components/MovieDetails";
 import MovieService from "./services/MovieService";
 import SearchResults from "./components/SearchResults";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
   const searchMovies = async (title) => {
     const response = await MovieService.searchMovies(title);
@@ -26,7 +33,7 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <div className={`App ${theme}`}>
       <Header />
       <SearchBar searchMovies={searchMovies} />
       {selectedMovie ? (
@@ -34,6 +41,7 @@ function App() {
       ) : (
         <MovieList movies={movies} getMovieDetails={getMovieDetails} />
       )}
+      <button onClick={toggleTheme}>Toggle Theme</button>
     </div>
   );
 }

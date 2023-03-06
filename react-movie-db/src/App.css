@@ -36,3 +36,41 @@
     transform: rotate(360deg);
   }
 }
+
+.App {
+  background-color: #f8f9fa;
+  color: #343a40;
+  height: 1000px;
+}
+
+.App.dark {
+  background-color: #343a40;
+  color: #f8f9fa;
+}
+
+/* Dark theme styles */
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-nav .nav-link {
+  color: #f8f9fa;
+}
+
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #ffc107;
+}
+
+.bg-dark {
+  background-color: #343a40 !important;
+}
+
+
+.card {
+  background-color: #ffffff;
+  color: #343a40;
+}
+
+.card.dark {
+  background-color: #343a40;
+  color: #f8f9fa;
+}
+
+
