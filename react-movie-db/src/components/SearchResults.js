@@ -2,7 +2,9 @@ import React from "react";
 import MovieItem from "./MovieItem";
 
 function SearchResults(props) {
-  console.log("SearchResults props:", props);
+  if (!props.movies) {
+    return <p>No results found.</p>;
+  }
 
   return (
     <div className="row">

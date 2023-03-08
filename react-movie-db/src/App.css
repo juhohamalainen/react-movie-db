@@ -1,76 +1,67 @@
+/* Common styles for light and dark themes */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+}
+
+.header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 1rem;
+  align-content: flex-end;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.search-bar {
+  margin-bottom: 1rem;
+  padding: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.movie-item {
+  margin-bottom: 1rem;
 }
 
-.App {
-  background-color: #f8f9fa;
+.movie-details {
+  background-color: #fff;
   color: #343a40;
-  height: 1000px;
+  padding: 1rem;
 }
 
+/* Light theme */
+.App.light {
+  background-color: #fff;
+  color: #343a40;
+}
+
+.carousel-caption {
+  color: black;
+}
+
+/* Dark theme */
 .App.dark {
   background-color: #343a40;
-  color: #f8f9fa;
+  color: #fff;
 }
 
-/* Dark theme styles */
-.navbar-dark .navbar-brand,
-.navbar-dark .navbar-nav .nav-link {
-  color: #f8f9fa;
+.header.dark {
+  background-color: #6c757d;
 }
 
-.navbar-dark .navbar-nav .nav-link.active {
-  color: #ffc107;
+.search-bar.dark {
+  background-color: #424242;
 }
 
-.bg-dark {
-  background-color: #343a40 !important;
+.movie-item.dark {
+  background-color: #424242;
+  color: #fff;
 }
 
-
-.card {
-  background-color: #ffffff;
-  color: #343a40;
+.movie-details.dark {
+  background-color: #343a40;
+  color: #fff;
 }
 
 .card.dark {
-  background-color: #343a40;
-  color: #f8f9fa;
+  background-color: rgb(27, 25, 25);
 }
-
 

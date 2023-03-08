@@ -1,39 +1,27 @@
 import React, { useState } from "react";
 
 function SearchBar(props) {
-  const [title, setTitle] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const handleChange = (event) => {
-    setTitle(event.target.value);
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSearchSubmit = (event) => {
     event.preventDefault();
-    props.searchMovies(title);
-    setTitle("");
+    props.searchMovies(searchTerm);
   };
 
   return (
-    <div className="row">
-      <div className="col-md-8 offset-md-2">
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search movies..."
-              value={title}
-              onChange={handleChange}
-            />
-            <div className="input-group-append">
-              <button className="btn btn-primary" type="submit">
-                Search
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+    <form onSubmit={handleSearchSubmit} className={`search-bar ${props.theme}`}>
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        placeholder="Search for a movie"
+      />
+      <button className="btn btn-primary" type="submit">Search</button>
+    </form>
   );
 }
 
