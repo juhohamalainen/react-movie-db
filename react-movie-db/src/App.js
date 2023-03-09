@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
+import Home from "./components/Home";
 import SearchBar from "./components/SearchBar";
 import MovieList from "./components/MovieList";
 import MovieItem from "./components/MovieItem";
@@ -8,24 +9,21 @@ import MovieDetails from "./components/MovieDetails";
 import MovieService from "./services/MovieService";
 import { Container, Row, Col, Carousel } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import imdb from 'imdb-api';
+import axios from "axios";
+
 
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [theme, setTheme] = useState("light");
+  const [topMovies, setTopMovies] = useState([]);
+  
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
-
-  useEffect(() => {
-    const fetchPopularMovies = async () => {
-      const response = await MovieService.searchMovies("popular");
-      setMovies(response.data.Search);
-    };
-    fetchPopularMovies();
-  }, []);
 
   const searchMovies = async (title) => {
     const response = await MovieService.searchMovies(title);
@@ -44,6 +42,7 @@ function App() {
   return (
     <div className={`App ${theme}`}>
       <Header toggleTheme={toggleTheme} />
+      <Home />
       <SearchBar searchMovies={searchMovies} />
       {selectedMovie ? (
         <MovieDetails
@@ -56,20 +55,21 @@ function App() {
             <Row>
               <Col>
                 <Carousel>
-                  {movies.map((movie) => (
-                    <Carousel.Item key={movie.imdbID}>
+                  {topMovies.map((movie) => (
+                    <Carousel.Item key={movie.id}>
                       <img
-                        className="d-block w-25"
-                        src={movie.Poster}
-                        alt={movie.Title}
+                        className="d-block w-100"
+                        src={movie.poster}
+                        alt={movie.title}
                       />
                       <Carousel.Caption>
-                        <h3>{movie.Title}</h3>
-                        <p>{movie.Year}</p>
+                        <h3>{movie.title}</h3>
+                        <p>{movie.plot}</p>
                       </Carousel.Caption>
                     </Carousel.Item>
                   ))}
                 </Carousel>
+
               </Col>
             </Row>
             <Row>
