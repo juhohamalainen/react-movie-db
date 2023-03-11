@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
+import Home from "./components/Home";
 import SearchBar from "./components/SearchBar";
 import MovieList from "./components/MovieList";
-import MovieItem from "./components/MovieItem";
 import MovieDetails from "./components/MovieDetails";
 import MovieService from "./services/MovieService";
-import { Container, Row, Col, Carousel } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -18,14 +18,6 @@ function App() {
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
-
-  useEffect(() => {
-    const fetchPopularMovies = async () => {
-      const response = await MovieService.searchMovies("popular");
-      setMovies(response.data.Search);
-    };
-    fetchPopularMovies();
-  }, []);
 
   const searchMovies = async (title) => {
     const response = await MovieService.searchMovies(title);
@@ -45,6 +37,7 @@ function App() {
     <div className={`App ${theme}`}>
       <Header toggleTheme={toggleTheme} />
       <SearchBar searchMovies={searchMovies} />
+      <Home theme={theme} />
       {selectedMovie ? (
         <MovieDetails
           movie={selectedMovie}
@@ -53,25 +46,6 @@ function App() {
       ) : (
         <>
           <Container fluid>
-            <Row>
-              <Col>
-                <Carousel>
-                  {movies.map((movie) => (
-                    <Carousel.Item key={movie.imdbID}>
-                      <img
-                        className="d-block w-25"
-                        src={movie.Poster}
-                        alt={movie.Title}
-                      />
-                      <Carousel.Caption>
-                        <h3>{movie.Title}</h3>
-                        <p>{movie.Year}</p>
-                      </Carousel.Caption>
-                    </Carousel.Item>
-                  ))}
-                </Carousel>
-              </Col>
-            </Row>
             <Row>
               <Col>
                 <MovieList
@@ -84,7 +58,6 @@ function App() {
           </Container>
         </>
       )}
-
     </div>
   );
 }

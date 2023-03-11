@@ -34,7 +34,8 @@
 }
 
 .carousel-caption {
-  color: black;
+  text-align: left !important;
+  position: initial !important;
 }
 
 /* Dark theme */
@@ -64,4 +65,7 @@
 .card.dark {
   background-color: rgb(27, 25, 25);
 }
+
+
+
 
