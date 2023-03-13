@@ -4,7 +4,7 @@ import { BsFillMoonStarsFill } from "react-icons/bs";
 function Header(props) {
   return (
     <header className={`header ${props.theme}`}>
-      <h1>Movie Search App</h1>
+      <h1>Movie Database</h1>
       <BsFillMoonStarsFill onClick={props.toggleTheme} />
     </header>
   );

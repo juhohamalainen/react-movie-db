@@ -38,25 +38,29 @@ const Home = ({ theme }) => {
         <Carousel>
           {movies.map((movie) => (
             <Carousel.Item key={movie.id}>
-              <img
-                className="d-block w-25"
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-              />
-              <Carousel.Caption
-                style={{ color: theme === "dark" ? "white" : "black" }}
-                className="text-left"
-              >
-                <h3>{movie.title}</h3>
-                <p style={{ whiteSpace: "pre-wrap" }}>{movie.overview}</p>
-                <p>{movie.release_date}</p>
-                <button
-                  className={`btn btn-primary ${theme}`}
-                  onClick={() => getMovieDetails(movie.id)}
-                >
-                  More Info
-                </button>
-              </Carousel.Caption>
+              <div className="row align-items-center">
+                <div className="col-md-6 w-auto">
+                  <img
+                    className="d-block w-auto"
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                </div>
+                <div className="col-md-6">
+                  <Carousel.Caption style={{ color: theme === "dark" ? "white" : "black" }}
+                  className="text-left">
+                    <h3>{movie.title}</h3>
+                    <p style={{ whiteSpace: "pre-wrap" }}>{movie.overview}</p>
+                    <p>{movie.release_date}</p>
+                    <button
+                      className={`btn btn-primary ${theme}`}
+                      onClick={() => getMovieDetails(movie.id)}
+                    >
+                      More Info
+                    </button>
+                  </Carousel.Caption>
+                </div>
+              </div>
             </Carousel.Item>
           ))}
         </Carousel>

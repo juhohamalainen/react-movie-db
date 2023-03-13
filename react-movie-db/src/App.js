@@ -37,7 +37,6 @@ function App() {
     <div className={`App ${theme}`}>
       <Header toggleTheme={toggleTheme} />
       <SearchBar searchMovies={searchMovies} />
-      <Home theme={theme} />
       {selectedMovie ? (
         <MovieDetails
           movie={selectedMovie}
@@ -45,17 +44,21 @@ function App() {
         />
       ) : (
         <>
-          <Container fluid>
-            <Row>
-              <Col>
-                <MovieList
-                  movies={movies}
-                  getMovieDetails={getMovieDetails}
-                  theme={theme}
-                />
-              </Col>
-            </Row>
-          </Container>
+          {movies.length > 0 ? (
+            <Container fluid>
+              <Row>
+                <Col>
+                  <MovieList
+                    movies={movies}
+                    getMovieDetails={getMovieDetails}
+                    theme={theme}
+                  />
+                </Col>
+              </Row>
+            </Container>
+          ) : (
+            <Home theme={theme} />
+          )}
         </>
       )}
     </div>
