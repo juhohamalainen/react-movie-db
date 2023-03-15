@@ -17,10 +17,11 @@ const Home = ({ theme }) => {
     fetchTopRatedMovies();
   }, []);
 
-  const getMovieDetails = async (id) => {
-    const response = await MovieService.getMovieDetails(id);
+  const getMovieDetails = async (title) => {
+    const response = await MovieService.getMovieDetails(title);
     setSelectedMovie(response.data);
   };
+  
 
   const clearSelectedMovie = () => {
     setSelectedMovie(null);
@@ -53,11 +54,12 @@ const Home = ({ theme }) => {
                     <p style={{ whiteSpace: "pre-wrap" }}>{movie.overview}</p>
                     <p>{movie.release_date}</p>
                     <button
-                      className={`btn btn-primary ${theme}`}
-                      onClick={() => getMovieDetails(movie.id)}
-                    >
-                      More Info
-                    </button>
+  className={`btn btn-primary ${theme}`}
+  onClick={() => getMovieDetails(movie.title)}
+>
+  More Info
+</button>
+
                   </Carousel.Caption>
                 </div>
               </div>

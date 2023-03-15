@@ -8,7 +8,7 @@ function MovieDetails (props) {
   return (
   <div className="row">
     <div className="col-md-6 offset-md-3">
-      <div className="card">
+      <div className={`card ${props.theme}`}>
         <img src={props.movie.Poster} className="card-img-top" alt={props.movie.Title} />
         <div className="card-body">
           <h5 className="card-title">{props.movie.Title} ({props.movie.Year})</h5>

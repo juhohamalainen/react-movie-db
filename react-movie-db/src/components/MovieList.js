@@ -1,6 +1,7 @@
 import React from "react";
 import MovieItem from "./MovieItem";
 
+
 function MovieList(props) {
   return (
     <div className="container">

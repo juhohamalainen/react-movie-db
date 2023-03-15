@@ -57,7 +57,7 @@ function App() {
               </Row>
             </Container>
           ) : (
-            <Home theme={theme} />
+            <Home theme={theme} getMovieDetails={getMovieDetails} />
           )}
         </>
       )}

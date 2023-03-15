@@ -19,9 +19,8 @@ const MovieService = {
   },
   
 
-  getMovieDetails: (id) => {
-    console.log(`Making API call to fetch details for movie with ID "${id}"...`);
-    return axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}`);
+  getMovieDetails: (title) => {
+    return axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${title}`);
   },
   
   getTopRatedMovies: async () => {
