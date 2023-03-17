@@ -19,7 +19,11 @@ const MovieService = {
   },
   
 
-  getMovieDetails: (title) => {
+  getMovieDetails: (id) => {
+    return axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}`);
+  },
+
+  getMovieDetails2: (title) => {
     return axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${title}`);
   },
   
