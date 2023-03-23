@@ -1,16 +1,12 @@
 import React from "react";
 import MovieItem from "./MovieItem";
 
-function MovieList(props) {
-  // Filter movies based on selected genre
-  const filteredMovies = props.selectedGenre
-    ? props.movies.filter((movie) => movie.genre.includes(props.selectedGenre))
-    : props.movies;
 
+function MovieList(props) {
   return (
     <div className="container">
       <div className="row">
-        {filteredMovies.map((movie) => (
+        {props.movies.map((movie) => (
           <MovieItem
             key={movie.imdbID}
             movie={movie}
