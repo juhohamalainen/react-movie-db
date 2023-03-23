@@ -10,7 +10,7 @@ function MovieList(props) {
           <MovieItem
             key={movie.imdbID}
             movie={movie}
-            getMovieDetails={props.getMovieDetails}
+            getMovieDetails2={props.getMovieDetails2}
             theme={props.theme}
           />
         ))}

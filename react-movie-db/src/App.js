@@ -24,10 +24,16 @@ function App() {
     setMovies(response.data.Search);
   };
 
-  const getMovieDetails = async (id) => {
-    const response = await MovieService.getMovieDetails(id);
+  const getMovieDetails = async (title) => {
+    const response = await MovieService.getMovieDetails(title);
     setSelectedMovie(response.data);
   };
+
+  const getMovieDetails2 = async (id) => {
+    const response = await MovieService.getMovieDetails2(id);
+    setSelectedMovie(response.data);
+  };
+
 
   const clearSelectedMovie = () => {
     setSelectedMovie(null);
@@ -50,7 +56,7 @@ function App() {
                 <Col>
                   <MovieList
                     movies={movies}
-                    getMovieDetails={getMovieDetails}
+                    getMovieDetails2={getMovieDetails2}
                     theme={theme}
                   />
                 </Col>

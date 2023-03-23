@@ -1,6 +1,6 @@
 function MovieItem(props) {
   const handleClick = () => {
-    props.getMovieDetails(props.movie.imdbID);
+    props.getMovieDetails2(props.movie.imdbID);
   };
 
   return (

@@ -22,6 +22,10 @@ const MovieService = {
   getMovieDetails: (title) => {
     return axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${title}`);
   },
+
+  getMovieDetails2: (id) => {
+    return axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}`);
+  },
   
   getTopRatedMovies: async () => {
     const response = await axios.get(
