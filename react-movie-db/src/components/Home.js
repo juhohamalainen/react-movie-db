@@ -4,29 +4,25 @@ import MovieItem from "./MovieItem";
 import MovieDetails from "./MovieDetails";
 import { Carousel } from "react-bootstrap";
 
-const Home = ({ theme }) => {
+const Home = ({ theme, getMovieDetails, selectedMovie, clearSelectedMovie, selectedGenreId }) => {
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     const fetchTopRatedMovies = async () => {
       const response = await MovieService.getTopRatedMovies();
       const topRatedMovies = response.data.results;
-      setMovies(topRatedMovies);
+      if (selectedGenreId) {
+      const filteredMovies = topRatedMovies
+        .filter(movie => movie.genre_ids.some((genre_id) => genre_id.toString() === selectedGenreId.toString()));
+      setMovies(filteredMovies);
+      }
+      else {
+        setMovies(topRatedMovies);
+      }
     };
     fetchTopRatedMovies();
-  }, []);
-
-  const getMovieDetails = async (title) => {
-    const response = await MovieService.getMovieDetails(title);
-    setSelectedMovie(response.data);
-  };
+  }, [selectedGenreId]);
   
-
-  const clearSelectedMovie = () => {
-    setSelectedMovie(null);
-  };
-
   return (
     <div className={`Home ${theme}`}>
       {selectedMovie ? (
@@ -54,11 +50,11 @@ const Home = ({ theme }) => {
                     <p style={{ whiteSpace: "pre-wrap" }}>{movie.overview}</p>
                     <p>{movie.release_date}</p>
                     <button
-  className={`btn btn-primary ${theme}`}
-  onClick={() => getMovieDetails(movie.title)}
->
-  More Info
-</button>
+                      className={`btn btn-primary ${theme}`}
+                      onClick={() => getMovieDetails(movie.title)}
+                    >
+                      More Info
+                    </button>
 
                   </Carousel.Caption>
                 </div>

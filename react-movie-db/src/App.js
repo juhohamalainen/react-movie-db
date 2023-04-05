@@ -13,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedGenreId , setSelectedGenreId] = useState(null);
   const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
@@ -34,19 +35,20 @@ function App() {
     setSelectedMovie(response.data);
   };
 
-
   const clearSelectedMovie = () => {
     setSelectedMovie(null);
+    setMovies([]);
   };
 
   return (
     <div className={`App ${theme}`}>
-      <Header toggleTheme={toggleTheme} />
-      <SearchBar searchMovies={searchMovies} />
+      <Header toggleTheme={toggleTheme} clearSelectedMovie={clearSelectedMovie} clearSelectedMovie={clearSelectedMovie} />
+      <SearchBar searchMovies={searchMovies} setSelectedGenreId={setSelectedGenreId} />
       {selectedMovie ? (
         <MovieDetails
           movie={selectedMovie}
           clearSelectedMovie={clearSelectedMovie}
+          theme={theme}
         />
       ) : (
         <>
@@ -63,7 +65,7 @@ function App() {
               </Row>
             </Container>
           ) : (
-            <Home theme={theme} getMovieDetails={getMovieDetails} />
+            <Home theme={theme} getMovieDetails={getMovieDetails} selectedMovie={selectedMovie} selectedGenreId={selectedGenreId} />
           )}
         </>
       )}

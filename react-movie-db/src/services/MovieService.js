@@ -18,7 +18,6 @@ const MovieService = {
       });
   },
   
-
   getMovieDetails: (title) => {
     return axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${title}`);
   },
@@ -30,6 +29,12 @@ const MovieService = {
   getTopRatedMovies: async () => {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`
+    );
+    return response;
+  },
+  getGenres: async () => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
     );
     return response;
   },
